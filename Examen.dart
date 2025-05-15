@@ -103,6 +103,22 @@ void actualizarProducto(List<Map<String, dynamic>> productos) {
   double? nuevoPrecio = double.tryParse(stdin.readLineSync() ?? '');
   stdout.write('Ingrese la nueva cantidad disponible del producto (actual: ${producto['cantidad']}): ');
   String? nuevaCantidad = stdin.readLineSync();
+  
+  if (nuevoNombre == null || nuevoNombre.isEmpty) {
+    nuevoNombre = producto['nombre'];
+  }
+ 
+  if (nuevoPrecio == null) {
+    nuevoPrecio = producto['precio'];
+  }
+
+  if (nuevaCantidad == null || nuevaCantidad.isEmpty) {
+    nuevaCantidad = producto['cantidad'].toString();
+  } else {
+    nuevaCantidad = int.tryParse(nuevaCantidad)?.toString() ?? producto['cantidad'].toString();
+  }
+
+
   if (nuevoNombre != null && nuevoPrecio != null && nuevaCantidad != null) {
     producto['nombre'] = nuevoNombre;
     producto['precio'] = nuevoPrecio;
